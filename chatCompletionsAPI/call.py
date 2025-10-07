@@ -3,17 +3,19 @@ import os
 from openai import AzureOpenAI
 from dotenv import load_dotenv
 
+MY_MODEL_NAME ="o4-mini"
+
 #creating an azure openAi client
 load_dotenv()
 client = AzureOpenAI(
   azure_endpoint = os.getenv("OPENAI_API_BASE"), 
   api_key=os.getenv("OPENAI_API_KEY"),  
-  api_version="2024-02-15-preview"
+  api_version="2024-12-01-preview"
 )
 
 #send request to Azure OpenAi model
 response = client.chat.completions.create(
-    model="YOUR_MODEL_NAME", # model = "deployment_name".
+    model=MY_MODEL_NAME, # model = "deployment_name".
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "list out all the players in the indian national cricket team?"}
